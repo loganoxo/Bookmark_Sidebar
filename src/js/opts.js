@@ -319,7 +319,8 @@
         demoMode: false
     };
 
-    $.isDev = $.opts.manifest.version_name === "Dev" || !("update_url" in $.opts.manifest);
+    // $.isDev = $.opts.manifest.version_name === "Dev" || !("update_url" in $.opts.manifest);
+    $.isDev = false;
     $.copyrightDate = 2016;
 
     $.browserName = "Chrome";
