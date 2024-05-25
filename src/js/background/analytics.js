@@ -27,10 +27,10 @@
          * @returns {Promise}
          */
         this.init = async () => {
-            await intervalCallback();
-            setInterval(async () => {
-                await intervalCallback();
-            }, 25 * 1000);
+            // await intervalCallback();
+            // setInterval(async () => {
+            //     await intervalCallback();
+            // }, 25 * 1000);
         };
 
         const intervalCallback = async () => {

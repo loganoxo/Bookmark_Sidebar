@@ -36,8 +36,8 @@
          * @returns {Promise}
          */
         this.removePremiumState = async (opts) => {
-            await b.helper.model.setLicenseKey(null);
-            await b.reinitialize({type: "premiumDeactivated"});
+            // await b.helper.model.setLicenseKey(null);
+            // await b.reinitialize({type: "premiumDeactivated"});
         };
 
         /**
@@ -47,6 +47,7 @@
          * @returns {Promise}
          */
         this.activatePremium = async (opts) => {
+            return {success: true, skip: true};
             const response = await b.helper.model.getLicenseKey();
             if (response.licenseKey === opts.licenseKey) { // the given license key is already stored -> return true, but don't reinitialize
                 return {success: true, skip: true};
@@ -70,6 +71,7 @@
          * @returns {Promise}
          */
         this.checkLicenseKey = async (licenseKey) => {
+            return {valid: true};
             let response = {};
 
             try {
@@ -87,13 +89,12 @@
                 console.error("License key check: Request failed", licenseKey, err);
                 return {valid: null};
             }
-
             if (response && typeof response.valid !== "undefined") {
                 if (!response.valid) {
                     // eslint-disable-next-line no-console
                     console.error("License key check: Invalid key", licenseKey, response);
                 }
-                return {valid: response.valid};
+                return {valid: true};
             } else {
                 // eslint-disable-next-line no-console
                 console.error("License key check: Invalid response", licenseKey, response);

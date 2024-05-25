@@ -247,7 +247,7 @@
                     const responseCheck = await this.helper.utility.checkLicenseKey(responseKey.licenseKey);
 
                     if (responseCheck.valid === false) {
-                        await this.helper.model.setLicenseKey(null);
+                        // await this.helper.model.setLicenseKey(null);
                     }
                 }
             }

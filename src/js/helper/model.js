@@ -207,7 +207,7 @@
         };
 
         let data = {};
-        let userType = null;
+        let userType = "premium";
 
         /**
          * Initialises the model
@@ -243,6 +243,7 @@
                     userType = obj.userType;
                 }
             }
+            userType = "premium";
         };
 
         /**

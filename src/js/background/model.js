@@ -3,7 +3,7 @@
 
     $.ModelHelper = function (b) {
         let data = {};
-        let licenseKey = null;
+        let licenseKey = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         let systemColor = "light";
         let translationInfo = [];
         let shareInfo = {
@@ -24,7 +24,7 @@
             }
 
             if (typeof config.licenseKey === "string" && config.licenseKey.length === 29) {
-                licenseKey = config.licenseKey;
+                // licenseKey = config.licenseKey;
             }
 
             if (typeof config.systemColor !== "undefined") {
@@ -118,7 +118,7 @@
             } else if (data && data.installationDate && data.installationDate < 1538352000000) { // installed before 01.10.2018
                 userType = "legacy";
             }
-
+            userType = "premium";
             return {userType: userType};
         };
 
@@ -159,8 +159,8 @@
          */
         this.setLicenseKey = async (key) => {
             try {
-                await $.api.storage.sync.set({licenseKey: key});
-                licenseKey = key;
+                // await $.api.storage.sync.set({licenseKey: key});
+                // licenseKey = key;
                 return {success: true};
             } catch (e) {
                 return {success: false, message: $.api.runtime.lastError.message};
