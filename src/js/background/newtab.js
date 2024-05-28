@@ -69,10 +69,20 @@
                 }
 
                 if (config.focusOmnibox || tab.index === 0) {
-                    updateTab(tab.id, url);
+                    $.api.tabs.get(tab.id, async (thisTab) => {
+                        let thisTabUrl = thisTab.url || thisTab.pendingUrl;
+                        if (thisTabUrl && (thisTabUrl === b.helper.utility.getParsedUrl("chrome://newtab/") || thisTabUrl === b.helper.utility.getParsedUrl("chrome://startpage/"))) {
+                            updateTab(tab.id, url, 201);
+                        }
+                    });
                 } else {
-                    removeTab(tab.id);
-                    $.api.tabs.create({url: url, active: true});
+                    $.api.tabs.get(tab.id, async (thisTab) => {
+                        let thisTabUrl = thisTab.url || thisTab.pendingUrl;
+                        if (thisTabUrl && (thisTabUrl === b.helper.utility.getParsedUrl("chrome://newtab/") || thisTabUrl === b.helper.utility.getParsedUrl("chrome://startpage/"))) {
+                            removeTab(tab.id);
+                            $.api.tabs.create({url: url, active: true});
+                        }
+                    });
                 }
             }
         };
